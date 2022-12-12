@@ -8,7 +8,7 @@ edition = "2021"
 repository = "https://github.com/ChainSafe/forest"
 
 [features]
-default = ["rocksdb"]
+default = []
 
 rocksdb = ["dep:rocksdb", "lz4"]
 lz4 = ["rocksdb?/lz4"]
@@ -36,5 +36,5 @@ rocksdb = { version = "0.19", default-features = false, optional = true }
 serde = { version = "1.0.150", features = ["derive"] }
 thiserror = "1.0.37"
 
-#[dev-dependencies]
-#tempfile.workspace = true
+[dev-dependencies]
+tempfile = "3.3"
