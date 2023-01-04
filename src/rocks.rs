@@ -30,7 +30,7 @@ lazy_static::lazy_static! {
 }
 
 /// `RocksDB` instance this satisfies the [Store] interface.
-#[derive(Clone, Debug)]
+#[derive(Clone)]
 pub struct RocksDb {
     pub db: Arc<DB>,
     options: Options,
@@ -209,5 +209,11 @@ impl BitswapStore for RocksDb {
 impl DBStatistics for RocksDb {
     fn get_statistics(&self) -> Option<String> {
         self.options.get_statistics()
+    }
+}
+
+impl std::fmt::Debug for RocksDb {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "RocksDb")
     }
 }
