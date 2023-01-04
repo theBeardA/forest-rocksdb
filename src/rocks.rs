@@ -30,7 +30,7 @@ lazy_static::lazy_static! {
 }
 
 /// `RocksDB` instance this satisfies the [Store] interface.
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct RocksDb {
     pub db: Arc<DB>,
     options: Options,
