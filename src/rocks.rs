@@ -211,3 +211,9 @@ impl DBStatistics for RocksDb {
         self.options.get_statistics()
     }
 }
+
+impl std::fmt::Debug for RocksDb {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "RocksDb")
+    }
+}
