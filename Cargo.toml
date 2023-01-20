@@ -24,7 +24,7 @@ paritydb = ["dep:parity-db"]
 [dependencies]
 anyhow = "1.0.66"
 cid = { version = "0.8", default-features = false, features = ["std"] }
-fvm_ipld_blockstore = "0.1.1"
+fvm_ipld_blockstore = { git = "https://github.com/filecoin-project/ref-fvm" }
 lazy_static = "1.4.0"
 libipld = { version = "0.14", default-features = false, features = ["dag-cbor", "dag-json", "derive"] }
 libp2p-bitswap = "0.25.0"
