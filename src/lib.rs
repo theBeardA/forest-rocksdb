@@ -3,12 +3,16 @@
 
 mod errors;
 mod memory;
+mod metrics;
+mod utils;
 
 #[cfg(feature = "rocksdb")]
 pub mod rocks;
-
 #[cfg(feature = "rocksdb")]
 pub mod rocks_config;
+
+#[cfg(feature = "paritydb")]
+pub mod parity_db;
 
 pub use errors::Error;
 pub use memory::MemoryDB;
@@ -62,6 +66,11 @@ pub trait Store {
     {
         keys.iter().try_for_each(|key| self.delete(key))
     }
+
+    /// Flush writing buffer if there is any. Default implementation is blank
+    fn flush(&self) -> Result<(), Error> {
+        Ok(())
+    }
 }
 
 impl<BS: Store> Store for &BS {
@@ -114,5 +123,12 @@ impl<BS: Store> Store for &BS {
         K: AsRef<[u8]>,
     {
         (*self).bulk_delete(keys)
+    }
+}
+
+/// Traits for collecting DB stats
+pub trait DBStatistics {
+    fn get_statistics(&self) -> Option<String> {
+        None
     }
 }
